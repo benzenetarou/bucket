@@ -1,7 +1,7 @@
 <%= form_for(@bucket) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.text_area :content, placeholder: "Compose new bucket..." %>
+    <%= f.text_area :content, placeholder: "やりたいことを記入してください" %>
   </div>
-  <%= f.submit "Post", class: "btn btn-primary" %>
+  <%= f.submit "登録", class: "btn btn-primary" %>
 <% end %>

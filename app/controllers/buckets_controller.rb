@@ -5,7 +5,7 @@ class BucketsController < ApplicationController
   def create
     @bucket = current_user.buckets.build(bucket_params)
     if @bucket.save
-      flash[:success] = "新しいBucketを登録しました"
+      flash[:success] = "新しいリストを登録しました"
       redirect_to root_url
     else
       render 'static_pages/home'

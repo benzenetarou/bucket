@@ -10,7 +10,7 @@
   </aside>
   <div class="col-md-8">
       <% if @user.buckets.any? %>
-        <h3>buckets (<%= @user.buckets.count %>)</h3>
+        <h3>現在のやりたいことリスト : <%= @user.buckets.count %></h3>
         <ul class="buckets">
           <%= render @buckets %>
         </ul>

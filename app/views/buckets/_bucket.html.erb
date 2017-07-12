@@ -1,0 +1,9 @@
+<li id="bucket-<%= bucket.id %>">
+  <span class="content"><%= bucket.content %></span>
+  <span class="timestamp">
+    <%= bucket.created_at.strftime('%Y年%m月%d日') %>
+  </span>
+  <% if current_user?(bucket.user)  %>
+    <%= link_to "削除", bucket, method: :delete, data: { confirm: "本当に削除しますか？"} %>
+  <% end %>
+</li>

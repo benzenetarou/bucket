@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  get '/list', to: 'buckets#show'
   resources :users
   resources :buckets, only: [:create, :destroy]
 

@@ -2,6 +2,10 @@ class BucketsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
   before_action :correct_user, only: :destroy
 
+  def show
+    @buckets = Bucket.all
+  end
+
   def create
     @bucket = current_user.buckets.build(bucket_params)
     if @bucket.save

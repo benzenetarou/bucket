@@ -10,10 +10,13 @@
   </aside>
   <div class="col-md-8">
       <% if @user.buckets.any? %>
-        <h3>現在のやりたいことリスト : <%= @user.buckets.count %></h3>
-        <ul class="buckets">
+        <h3>やりたいことリスト : <%= @user.buckets.count %></h3>
+        <%= link_to "All", all_path %>
+        <%= link_to "達成", accomplished_path %>
+        <%= link_to "未達成", unaccomplished_path %>
+        <ol class="bucket">
           <%= render @buckets %>
-        </ul>
+        </ol>
         <%= will_paginate @buckets %>
       <% end %>
     </div>

@@ -3,7 +3,7 @@ class BucketsController < ApplicationController
   before_action :correct_user, only: [:destroy, :accomplish]
 
   def show
-    @buckets = Bucket.all
+    @buckets = Bucket.all.reverse_order
   end
 
   def create
@@ -24,6 +24,7 @@ class BucketsController < ApplicationController
 
   def accomplish
     @bucket.is_accomplished = "ture"
+    @bucket.comment = "　→達成済み！"
     if @bucket.save
       redirect_to request.referrer || root_url
     else

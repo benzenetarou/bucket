@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/list', to: 'buckets#show'
   patch '/buckets/:id', to: 'buckets#accomplish'
+  get '/users/:id/all', to: 'users#all', as: :all
+  get '/users/:id/accomplished', to: 'users#accomplished', as: :accomplished
+  get '/users/:id/unaccomplished', to: 'users#unaccomplished', as: :unaccomplished
+
   resources :users
   resources :buckets
 

@@ -1,11 +1,16 @@
 <li id="bucket-<%= bucket.id %>">
-  <span class="content"><%= bucket.content %></span>
-  <% if current_user?(bucket.user)  %>
-    <% if bucket.is_accomplished %>
-      <%= "　→達成済み！" %>
-    <% else %>
-      <%= link_to "達成", bucket, method: :patch %>
+  <% if bucket.is_accomplished %>
+    <span class="content"><s><%= bucket.content %></s></span>
+    <%= bucket.comment %>
+    <% if current_user?(bucket.user)  %>
+      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+      <%= link_to "削除", bucket, method: :delete, data: { confirm: "本当に削除しますか？"} %>
     <% end %>
-    <%= link_to "削除", bucket, method: :delete, data: { confirm: "本当に削除しますか？"} %>
+  <% else %>
+    <span class="content"><%= bucket.content %></span>
+    <% if current_user?(bucket.user) %>
+      <%= link_to "達成", bucket, method: :patch %>
+      <%= link_to "削除", bucket, method: :delete, data: { confirm: "本当に削除しますか？"} %>
+    <% end %>
   <% end %>
 </li>

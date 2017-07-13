@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update]
   before_action :correct_user, only: [:edit, :update]
-  
+
   def show
     @user = User.find(params[:id])
     @buckets = @user.buckets.paginate(page: params[:page])
@@ -34,6 +34,24 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def all
+    @user = User.find(params[:id])
+    @buckets = @user.buckets.paginate(page: params[:page])
+    render 'show'
+  end
+
+  def accomplished
+    @user = User.find(params[:id])
+    @buckets = @user.buckets.where(is_accomplished: true).paginate(page: params[:page])
+    render 'show'
+  end
+
+  def unaccomplished
+    @user = User.find(params[:id])
+    @buckets = @user.buckets.where(is_accomplished: false).paginate(page: params[:page])
+    render 'show'
   end
 
   private

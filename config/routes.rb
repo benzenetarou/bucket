@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/list', to: 'buckets#show'
+  patch '/buckets/:id', to: 'buckets#accomplish'
   resources :users
-  resources :buckets, only: [:create, :destroy]
+  resources :buckets
 
 end

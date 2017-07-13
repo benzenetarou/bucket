@@ -1,6 +1,6 @@
 class BucketsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
-  before_action :correct_user, only: :destroy
+  before_action :correct_user, only: [:destroy, :accomplish]
 
   def show
     @buckets = Bucket.all
@@ -20,6 +20,15 @@ class BucketsController < ApplicationController
     @bucket.destroy
     flash[:success] = "Bucketを削除しました"
     redirect_to request.referrer || root_url
+  end
+
+  def accomplish
+    @bucket.is_accomplished = "ture"
+    if @bucket.save
+      redirect_to request.referrer || root_url
+    else
+      flash[:danger] = "更新に失敗しました"
+    end
   end
 
   private

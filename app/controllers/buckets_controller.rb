@@ -3,7 +3,7 @@ class BucketsController < ApplicationController
   before_action :correct_user, only: [:destroy, :accomplish]
 
   def show
-    @buckets = Bucket.all.reverse_order
+    @buckets = Bucket.all.reverse_order.paginate(page: params[:page], :per_page => 100)
   end
 
   def create

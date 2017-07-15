@@ -1,6 +1,8 @@
 <h2>みんなのリスト</h2>
+<p>総リスト数: <%= @buckets.count %></p>
 <ul>
   <% @buckets.each do |bucket| %>
   <li><%= bucket.content %> （<%= link_to "#{bucket.user.name}", user_path(bucket.user.id) %>）</li>
   <% end %>
 </ul>
+<%= will_paginate @buckets %>

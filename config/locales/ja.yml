@@ -1,3 +1,9 @@
 time:
   fotmat:
     long: '%Y/%m/%d (%a)'
+
+ja:
+  will_paginate:
+    previous_label: "前"
+    next_label: "次"
+    page_gap: "…"

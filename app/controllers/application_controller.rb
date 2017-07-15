@@ -11,4 +11,15 @@ class ApplicationController < ActionController::Base
         redirect_to login_url
       end
     end
+
+    def slack_notice_register_bucket(bucket)
+      notifier = Slack::Notifier.new "#{ENV['SLACK_WEBHOOK_URL']}", channel: "#bucket_notifier", username: "notifier"
+      notifier.ping("新しくBucketが追加されました。\n ユーザー名: " + bucket.user.name + "\nBucket: " + bucket.content)
+    end
+
+    def slack_notice_register_user(user)
+      notifier = Slack::Notifier.new "#{ENV['SLACK_WEBHOOK_URL']}", channel: "#bucket_notifier", username: "notifier"
+      notifier.ping("新規ユーザー登録がありました。\nユーザー名:" + user.name + "\nメールアドレス: "+ @user.email)
+    end
+
 end

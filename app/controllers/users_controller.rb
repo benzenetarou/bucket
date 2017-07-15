@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
+      slack_notice_register_user(@user)
       flash[:success] = "登録完了しました！"
       redirect_to @user
     else

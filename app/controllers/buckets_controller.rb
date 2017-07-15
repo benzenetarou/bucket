@@ -10,8 +10,7 @@ class BucketsController < ApplicationController
     @bucket = current_user.buckets.build(bucket_params)
     if @bucket.save
       flash[:success] = "新しいリストを登録しました"
-      notifier = Slack::Notifier.new "#{ENV['SLACK_WEBHOOK_URL']}", channel: "#bucket_notifier", username: "notifier"
-      notifier.ping("追加されたリスト: " + @bucket.content)
+      slack_notice_register_bucket @bucket
       redirect_to root_url
     else
       render 'static_pages/home'
